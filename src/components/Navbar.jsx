@@ -1,3 +1,5 @@
+import React from 'react';
+
 function NavBar() {
     return (
       <div className="flex bg-purple-700 h-20 text-white items-center justify justify-between">

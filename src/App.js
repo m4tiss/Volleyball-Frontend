@@ -2,8 +2,7 @@ import NavBar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="text-5xl">
-    Hello
+    <div className="flex flex-col">
     <NavBar/>
     </div>
   );

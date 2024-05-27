@@ -1,9 +1,13 @@
-import React,{useState} from 'react';
-
+import React from 'react';
+import { useMatches } from "../providers/MatchProvider";
 function SideBar() {
 
 
-  const [status, setStatus] = useState('');
+  const {status,setStatus } = useMatches();
+
+  const handleChange = (e) => {
+    setStatus(e.target.value);
+  };
 
     return (
       <div className="flex basis-1/4">
@@ -16,7 +20,7 @@ function SideBar() {
               name="status"
               value="ALL"
               checked={status === 'ALL'}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={handleChange}
             />
             ALL
           </label>
@@ -27,7 +31,7 @@ function SideBar() {
               name="status"
               value="PLANNED"
               checked={status === 'PLANNED'}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={handleChange}
             />
             PLANNED
           </label>
@@ -39,7 +43,7 @@ function SideBar() {
               name="status"
               value="IN_PROGRESS"
               checked={status === 'IN_PROGRESS'}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={handleChange}
             />
             IN_PROGRESS
           </label>
@@ -50,7 +54,7 @@ function SideBar() {
               name="status"
               value="FINISHED"
               checked={status === 'FINISHED'}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={handleChange}
             />
             FINISHED
           </label>

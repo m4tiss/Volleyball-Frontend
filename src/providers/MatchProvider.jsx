@@ -8,24 +8,24 @@ const MatchContext = createContext();
 export const MatchProvider = ({ children }) => {
 
   const [allMatches, setAllMatches] = useState([]);
+  const [status, setStatus] = useState('ALL');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("/observator/matches/all");
+        const res = await axios.get(`/observator/matches/all${status === 'ALL' ? '' : `/` + status}`);
         const allmatches = res.data;
-        console.log(allmatches);
         setAllMatches(allmatches);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
     fetchData();
-  }, []);
+  }, [status]);
 
 
   return (
-    <MatchContext.Provider value={{ allMatches }}>
+    <MatchContext.Provider value={{ allMatches, status, setStatus }}>
       {children}
     </MatchContext.Provider>
   );

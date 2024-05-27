@@ -4,7 +4,7 @@ import SideBar from './SideBar';
 
 function Content() {
     return (
-      <div className="flex">
+      <div className="flex flex-auto">
         <MatchList/>
         <SideBar/>
       </div>

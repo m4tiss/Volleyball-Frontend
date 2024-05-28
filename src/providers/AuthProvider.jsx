@@ -14,10 +14,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      localStorage.setItem('token',token);
+      localStorage.setItem(tokenKey,token);
     } else {
       delete axios.defaults.headers.common["Authorization"];
-      localStorage.removeItem('token')
+      localStorage.removeItem(tokenKey)
     }
     console.log("Token:" + token)
   }, [token]);

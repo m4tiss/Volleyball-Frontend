@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Content from "./components/Content";
 import NavBar from "./components/Navbar";
+import AllTeams from "./pages/AllTeams";
 import { MatchProvider } from "./providers/MatchProvider";
 import Login from "./pages/auth/Login";
 import { AuthProvider, useAuth } from "./providers/AuthProvider";
@@ -22,6 +23,10 @@ function App() {
               <Route
                 path="content"
                 element={<PrivateRoute component={<Content />} />}
+              />
+              <Route
+                path="allTeams"
+                element={<PrivateRoute component={<AllTeams />} />}
               />
             </Routes>
           </div>

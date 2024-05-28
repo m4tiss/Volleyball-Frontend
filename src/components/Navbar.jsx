@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../providers/AuthProvider';
+import { Link } from "react-router-dom";
 
 function NavBar() {
 
@@ -8,8 +9,10 @@ function NavBar() {
     return (
       <div className="flex bg-purple-700 py-5 text-white items-center justify-between">
         <div className="flex ml-10">
-        <h2 className="text-3xl mx-10 select-none">VolleyWatch</h2>
-        <h2 className="text-3xl mx-20 hover:text-yellow-400 border-none cursor-pointer">All teams</h2>
+        <Link to="/content" className="text-3xl mx-10 cursor-pointer">VolleyWatch</Link>
+        <Link to="/allTeams" className="text-3xl mx-20 hover:text-yellow-400 border-none cursor-pointer">
+            All teams
+        </Link>
         </div>
 
         {!isAuth() ? (

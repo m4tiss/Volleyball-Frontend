@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem(tokenKey)
     }
-    console.log("Token:" + token)
   }, [token]);
 
 

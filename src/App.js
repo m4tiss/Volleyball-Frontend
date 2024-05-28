@@ -2,13 +2,13 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Content from "./components/Content";
 import NavBar from "./components/Navbar";
-import MacthDetail from "./pages/MatchDeatil";
 import AllTeams from "./pages/AllTeams";
 import { MatchProvider } from "./providers/MatchProvider";
 import Login from "./pages/auth/Login";
 import { AuthProvider, useAuth } from "./providers/AuthProvider";
+import MatchDetail from "./pages/MatchDetail";
 
-function App() {
+function App() {  
   return (
     <AuthProvider>
       <MatchProvider>
@@ -29,11 +29,9 @@ function App() {
                 path="allTeams"
                 element={<PrivateRoute component={<AllTeams />} />}
               />
-
               <Route path="matchDetail/:matchId"
-               element={<PrivateRoute component={<MacthDetail />} />}
+               element={<PrivateRoute component={<MatchDetail />} />}
                />
-
             </Routes>
           </div>
         </BrowserRouter>

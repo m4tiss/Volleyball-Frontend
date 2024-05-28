@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import axios from "../config/axios";
 
-function MatchDetail() {
+function FinishedMatchDetail() {
   let { matchId } = useParams();
 
   const [match, setMatch] = useState({});
@@ -99,4 +99,4 @@ function MatchDetail() {
   );
 }
 
-export default MatchDetail;
+export default FinishedMatchDetail;

@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem('token')
     }
+    console.log("Token:" + token)
   }, [token]);
 
 
@@ -35,4 +36,10 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export default AuthProvider;
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (!context) {
+      throw new Error('useAuth must be used within a UserProvider');
+    }
+    return context;
+  };

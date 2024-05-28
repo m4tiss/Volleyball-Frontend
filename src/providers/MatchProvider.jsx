@@ -14,7 +14,9 @@ export const MatchProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/observator/matches/all${status === 'ALL' ? '' : `/` + status}`);
+
         const allmatches = res.data;
+        allmatches.sort((a, b) => new Date(b.match_date) - new Date(a.match_date));
         setAllMatches(allmatches);
       } catch (error) {
         console.error('Error fetching data:', error);

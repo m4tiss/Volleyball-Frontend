@@ -1,8 +1,9 @@
-export function createWebSocket(url, onMessage) {
+export function createWebSocket(url,matchId, onMessage) {
     const socket = new WebSocket(url);
   
     socket.onopen = () => {
       console.log('WebSocket connection opened');
+      socket.send(JSON.stringify({ match_id: matchId }))
     };
   
     socket.onmessage = (event) => {

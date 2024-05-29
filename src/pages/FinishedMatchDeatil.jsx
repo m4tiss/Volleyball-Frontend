@@ -12,7 +12,7 @@ function FinishedMatchDetail() {
     const fetchMatch = async () => {
       try {
         const res = await axios.get(`/observator/matches/${matchId}`);
-        const match = res.data[0];
+        const match = res.data;
         setMatch(match);
         setRows([[match.name_a], [match.name_b]]);
       } catch (error) {

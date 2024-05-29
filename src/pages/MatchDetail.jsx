@@ -19,7 +19,7 @@ function MatchDetail() {
         const res = await axios.get(`/observator/matches/${matchId}`, {
           signal: abortController.signal,
         });
-        const matchData = res.data[0];
+        const matchData = res.data;
         setMatch(matchData);
       } catch (error) {
         console.error("Error fetching data:", error);

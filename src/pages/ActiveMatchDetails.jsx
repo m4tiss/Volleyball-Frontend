@@ -40,24 +40,36 @@ function ActiveMatchDetail() {
           <ActiveTeamPanel 
           name={'PGE SKRA'}
           set={2}
-          point={24}/>
+          point={24}
+          teamId={99}
+          timeouts={2}
+          />
           <button className="bg-slate-300 h-fit text-white text-4xl pb-2 rounded-xl shadow-lg" onClick={handleSwap}>&#60;=&#62;</button>
           <ActiveTeamPanel
           name={'ASSECO'}
           set={1}
-          point={21}/>
+          point={21}
+          teamId={99}
+          timeouts={1}
+          />
         </>
       ) : (
         <>
            <ActiveTeamPanel
            name={'ASSECO'}
            set={1}
-           point={21}/>
+           point={21}
+           teamId={99}
+           timeouts={1}
+           />
           <button className="bg-slate-300 h-fit text-white text-4xl pb-2 rounded-xl shadow-lg" onClick={handleSwap}>&#60;=&#62;</button>
           <ActiveTeamPanel
            name={'PGE SKRA'}
            set={2}
-           point={24}/>
+           point={24}
+           teamId={99}
+           timeouts={2}
+           />
         </>
       )}
     </div>

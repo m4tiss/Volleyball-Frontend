@@ -7,6 +7,7 @@ import { MatchProvider } from "./providers/MatchProvider";
 import Login from "./pages/auth/Login";
 import { AuthProvider, useAuth } from "./providers/AuthProvider";
 import MatchDetail from "./pages/MatchDetail";
+import TeamPage from "./pages/TeamPage";
 
 function App() {  
   return (

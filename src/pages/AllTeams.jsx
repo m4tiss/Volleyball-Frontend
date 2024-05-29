@@ -10,6 +10,7 @@ function AllTeams() {
 
   const [allTeams, setAllTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [counter, setCounter] = useState(0);
   const navigate = useNavigate();
 
   const {token} = useAuth
@@ -26,7 +27,7 @@ function AllTeams() {
       }
     };
     fetchData()
-  }, [token,navigate]);
+  }, [token, navigate,counter]);
 
   const handleTeamClick = (team) => {
     setSelectedTeam(team); 
@@ -41,7 +42,7 @@ function AllTeams() {
                     <TeamPanel onClick={() => handleTeamClick(team)} key={team.id} name={team.name} />
                  ))}</div>
               <div className="w-1/2">
-              {selectedTeam && <TeamPage team={selectedTeam} />}
+              {selectedTeam && <TeamPage team={selectedTeam} setCounter={setCounter} />}
               </div>
             </div>
                 

@@ -1,13 +1,7 @@
-import {React,useState,useEffect} from 'react';
-import axios from '../config/axios';
-import { useAuth } from '../providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import {React} from 'react';
+
 
 function TeamPage({team}) {
-
-
-
-  const {token} = useAuth
 
     const players = team.players.players
     return (

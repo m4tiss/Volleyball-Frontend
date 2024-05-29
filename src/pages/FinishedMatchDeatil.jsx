@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "../config/axios";
 
 function FinishedMatchDetail() {

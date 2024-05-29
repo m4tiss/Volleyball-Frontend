@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import FinishedMacthDetail from "./FinishedMatchDeatil";
 import ActiveMatchDetail from "./ActiveMatchDetails"
 import axios from "../config/axios";

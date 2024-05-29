@@ -70,17 +70,53 @@ function FinishedMatchDetail() {
     return [[], []];
   };
 
-  const printSets = () => {
-
-  }
-
-  const printTeamA = () => {
-
-  }
-
-  const printTeamB = () => {
-
-  }
+  const printSets = (formattedResult, numSets, longerNameLength) => {
+    let result = formattedResult;
+    result += ' '.repeat(longerNameLength + 1);
+  
+    for (let i = 1; i <= numSets; i++) {
+      result += `S${i} | `;
+    }
+    result += `Total\n`;
+  
+    return result;
+  };
+  
+  const printTeamA = (formattedResult, numSets, shorterName, differenceSpace, points_teama, sets_a) => {
+    let result = formattedResult;
+  
+    if (shorterName === match.name_a) {
+      result += `${match.name_a} `;
+      result += ' '.repeat(differenceSpace);
+    } else {
+      result += `${match.name_a} `;
+    }
+  
+    for (let i = 0; i < numSets; i++) {
+      result += `${points_teama[i]} | `;
+    }
+    result += `${sets_a}\n`;
+  
+    return result;
+  };
+  
+  const printTeamB = (formattedResult, numSets, shorterName, differenceSpace, points_teamb, sets_b) => {
+    let result = formattedResult;
+  
+    if (shorterName === match.name_b) {
+      result += `${match.name_b} `;
+      result += ' '.repeat(differenceSpace);
+    } else {
+      result += `${match.name_b} `;
+    }
+  
+    for (let i = 0; i < numSets; i++) {
+      result += `${points_teamb[i]} | `;
+    }
+    result += `${sets_b}\n`;
+  
+    return result;
+  };
 
   const formatMatchResult = (match) => {
     let formattedResult = "";
@@ -95,7 +131,7 @@ function FinishedMatchDetail() {
       let shorterName = match.name_a.length > match.name_b.length ? match.name_b : match.name_a;
       let longerNameLength = longerName.length;
       let shorterNameLength = shorterName.length;
-      let differnceSpace = longerNameLength - shorterNameLength
+      let differenceSpace = longerNameLength - shorterNameLength
         
       match.result_detailed.resD.forEach((item) => {
         const [pointsA, pointsB] = item.split(":").map(num => parseInt(num));
@@ -103,43 +139,10 @@ function FinishedMatchDetail() {
         points_teamb.push(pointsB);
       });
 
-      formattedResult += ' '.repeat(longerNameLength + 1)
-
-
-      for (let i = 1; i <= numSets; i++) {
-        formattedResult += `S${i} | `;
-      }
-      formattedResult += `Total\n`;
-
-
-
-      if(shorterName === match.name_a ){
-        formattedResult += `${match.name_a} `;
-        formattedResult += ' '.repeat(differnceSpace)
-      }
-      else formattedResult += `${match.name_a} `
-
-
-      for (let i = 0; i < numSets; i++) {
-        formattedResult += `${points_teama[i]} | `;
-      }
-      formattedResult += `${sets_a}\n`;
-      
-      if(shorterName === match.name_b){
-        formattedResult += `${match.name_b} `;
-        formattedResult += ' '.repeat(differnceSpace)
-      }
-      else formattedResult += `${match.name_b} `;
-
-
-      for (let i = 0; i < numSets; i++) {
-        formattedResult += `${points_teamb[i]} | `;
-      }
-      formattedResult += `${sets_b}\n`;
-      
-
+      formattedResult = printSets(formattedResult, numSets, longerNameLength);
+      formattedResult = printTeamA(formattedResult, numSets, shorterName, differenceSpace, points_teama, sets_a);
+      formattedResult = printTeamB(formattedResult, numSets, shorterName, differenceSpace, points_teamb, sets_b);
       const formattedDate = format(new Date(match.match_date), "HH:mm:ss dd-MM-yyyy");
-
       formattedResult += `${formattedDate}\n`;
 
     return formattedResult;

@@ -31,11 +31,10 @@ function ActiveTeamPanel(props) {
 
   const onAddPoint = async () => {
     try {
-      await axios.post(`/referee/live`, {
+      await axios.post(`/referee/live/add`, {
         match_id: matchId,
         team_id: props.teamId
       });
-      console.log("Wysłane matchId:"+ matchId +" teamId" + props.teamId)
     } catch (error) {
       console.error('Error posting data:', error);
     }
@@ -49,7 +48,7 @@ return (
       <h2 className="text-3xl">{props.name}</h2>
       <h2 className="text-3xl bg-slate-100 p-2 rounded-lg">{props.set}</h2>
     </div>
-    <DowngraderAndTimeouts timeouts={props.timeouts}/>
+    <DowngraderAndTimeouts teamId={props.teamId} timeouts={props.timeouts}/>
     <button
     disabled={!isReferee}
     onClick={() => onAddPoint()}

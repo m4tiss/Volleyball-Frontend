@@ -1,10 +1,11 @@
 import { React, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import axios from "../config/axios";
 
 function DowngraderAndTimeouts(props) {
 
-
+    const { matchId } = useParams();
     const [isReferee, setIsReferee] = useState(false);
     const { token } = useAuth();
     const [timeouts, setTimeouts] = useState(props.timeouts);
@@ -27,6 +28,18 @@ function DowngraderAndTimeouts(props) {
       fetchUserRole()
     }, [token]);
 
+
+    const onSubtractPoint = async () => {
+        try {
+          await axios.post(`/referee/live/subtract`, {
+            match_id: matchId,
+            team_id: props.teamId
+          });
+        } catch (error) {
+          console.error('Error posting data:', error);
+        }
+      };
+
     const onTimeout = () => {
         if (timeouts > 0) {
           setTimeouts(timeouts - 1);
@@ -36,7 +49,11 @@ function DowngraderAndTimeouts(props) {
 
     return (
         <div className="flex justify-evenly">
-        <button disabled={!isReferee} className={`text-3xl bg-slate-100 p-2 rounded-lg ${!isReferee ? 'opacity-50' : ''}`}>-1</button>
+        <button
+        onClick={() => onSubtractPoint()} 
+        disabled={!isReferee} 
+        className={`text-3xl bg-slate-100 p-2 rounded-lg ${!isReferee ? 'opacity-50' : ''}`}
+        >-1</button>
         
         {timeouts === 0 && (
             <>

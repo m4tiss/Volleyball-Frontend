@@ -18,6 +18,7 @@ function DowngraderAndTimeouts(props) {
           const res = await axios.get(`/auth/user`);
           const user_data = res.data;
           if(user_data.role === "referee")setIsReferee(true);
+          console.log(isReferee)
         } catch (error) {
           setIsReferee(false);
           console.error('Error fetching data:', error);
@@ -37,7 +38,7 @@ function DowngraderAndTimeouts(props) {
         <div className="flex justify-evenly">
         <button disabled={!isReferee} className={`text-3xl bg-slate-100 p-2 rounded-lg ${!isReferee ? 'opacity-50' : ''}`}>-1</button>
         
-        {timeouts === 2 && (
+        {timeouts === 0 && (
             <>
               <button
                 key="0"
@@ -76,7 +77,7 @@ function DowngraderAndTimeouts(props) {
               </button>
             </>
           )}
-          {timeouts === 0 && (
+          {timeouts === 2 && (
             <>
               <button
                 key="0"

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from '../config/axios';
+import { useAuth } from './AuthProvider'
 
 
 const MatchContext = createContext();
@@ -10,9 +11,12 @@ export const MatchProvider = ({ children }) => {
   const [allMatches, setAllMatches] = useState([]);
   const [status, setStatus] = useState('ALL');
 
+  const { finishHeader } = useAuth()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("match")
         const res = await axios.get(`/observator/matches/all${status === 'ALL' ? '' : `/` + status}`);
 
         const allmatches = res.data;
@@ -22,8 +26,8 @@ export const MatchProvider = ({ children }) => {
         console.error('Error fetching data:', error);
       }
     };
-    fetchData();
-  }, [status]);
+    if(finishHeader) fetchData();
+  }, [status,finishHeader]);
 
 
   return (

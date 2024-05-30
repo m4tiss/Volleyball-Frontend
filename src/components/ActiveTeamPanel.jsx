@@ -79,7 +79,7 @@ return (
                 ${props.side === 'LEFT' ? 'rounded-tr-lg rounded-br-lg' : 'rounded-tl-lg rounded-bl-lg'}
                  top-1/4 bg-yellow-400 flex flex-col items-center
                   justify-center my-10 w-60`}>
-                    <h2 className="text-3xl">Player list</h2>
+                    <h2 className="text-3xl">PLAYER LIST</h2>
 
                     {team.players.players.map((player, index) => (
                         <h2 className="text-xl my-1" key={index}>

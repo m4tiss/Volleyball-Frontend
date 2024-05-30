@@ -54,7 +54,8 @@ function ActiveMatchDetail() {
  <div className="flex">
       { match && (isSwapped ? (
         <>
-          <ActiveTeamPanel 
+          <ActiveTeamPanel
+          side={"LEFT"} 
           name={match.name_a}
           set={extractNumbers(match.result)[0]}
           point={extractPoints(match.result_detailed.resD[match.result_detailed.resD.length - 1])[0]}
@@ -63,6 +64,7 @@ function ActiveMatchDetail() {
           />
           <button className="bg-slate-300 h-fit text-white text-4xl pb-2 rounded-xl shadow-lg" onClick={handleSwap}>&#60;=&#62;</button>
           <ActiveTeamPanel
+          side={"RIGHT"}
           name={match.name_b}
           set={extractNumbers(match.result)[1]}
           point={extractPoints(match.result_detailed.resD[match.result_detailed.resD.length - 1])[1]}
@@ -73,6 +75,7 @@ function ActiveMatchDetail() {
       ) : (
         <>
            <ActiveTeamPanel
+           side={"LEFT"} 
            name={match.name_b}
            set={extractNumbers(match.result)[1]}
            point={extractPoints(match.result_detailed.resD[match.result_detailed.resD.length - 1])[1]}
@@ -81,6 +84,7 @@ function ActiveMatchDetail() {
            />
           <button className="bg-slate-300 h-fit text-white text-4xl pb-2 rounded-xl shadow-lg" onClick={handleSwap}>&#60;=&#62;</button>
           <ActiveTeamPanel
+            side={"RIGHT"}
            name={match.name_a}
            set={extractNumbers(match.result)[0]}
            point={extractPoints(match.result_detailed.resD[match.result_detailed.resD.length - 1])[0]}

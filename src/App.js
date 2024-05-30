@@ -8,6 +8,7 @@ import Login from "./pages/auth/Login";
 import { AuthProvider, useAuth } from "./providers/AuthProvider";
 import MatchDetail from "./pages/MatchDetail";
 import TeamPage from "./pages/TeamPage";
+import AddMatch from "./pages/AddMatch";
 
 function App() {  
   return (
@@ -29,6 +30,10 @@ function App() {
               <Route
                 path="allTeams"
                 element={<PrivateRoute component={<AllTeams />} />}
+              />
+              <Route
+                path="addMatch"
+                element={<PrivateRoute component={<AddMatch />} />}
               />
               <Route path="matchDetail/:matchId"
                element={<PrivateRoute component={<MatchDetail />} />}

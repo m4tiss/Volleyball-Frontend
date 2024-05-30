@@ -23,8 +23,20 @@ function ActiveMatchDetail() {
     console.log("active")
     const socket = createWebSocket(`ws://localhost:3000/live?token=${token}`,matchId,
      (message) => {
-      setMatch(message)
-      console.log(message)
+
+      let updatedMessage = { ...message };
+
+      if (updatedMessage.result_detailed.resD.length === 0) {
+        updatedMessage.result_detailed.resD = ["0:0"];
+      }
+
+      if (updatedMessage.result_detailed.timeout.length === 0) {
+        updatedMessage.result_detailed.timeout = ["0:0"];
+      }
+
+      console.log(updatedMessage);
+      setMatch(updatedMessage);
+      
     });
 
     return () => {

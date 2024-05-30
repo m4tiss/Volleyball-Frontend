@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import axios from "../config/axios";
 import { createWebSocket } from "../WebSocket";
 import { useAuth } from '../providers/AuthProvider'
 import ActiveTeamPanel from '../components/ActiveTeamPanel'
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 
 function ActiveMatchDetail() {
@@ -11,10 +12,39 @@ function ActiveMatchDetail() {
   const { token } = useAuth();
   let { matchId } = useParams();
   const [match,setMatch] = useState();
-
-
-    const [isSwapped, setIsSwapped] = useState(false);
+  const [isReferee, setIsReferee] = useState(false);
+  const [isSwapped, setIsSwapped] = useState(false);
+  const navigate = useNavigate();
   
+
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const res = await axios.get(`/auth/user`);
+        const user_data = res.data;
+        if (user_data.role === "referee") setIsReferee(true);
+        console.log(isReferee);
+      } catch (error) {
+        setIsReferee(false);
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchUserRole();
+  }, [token]);
+
+    //not testing
+    const onDeleteMatch = async () => {
+
+      try {
+        await axios.delete(`/referee/matches/${matchId}`);
+        navigate('/content');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+
     const handleSwap = () => {
       setIsSwapped(!isSwapped);
     };
@@ -36,7 +66,7 @@ function ActiveMatchDetail() {
 
       console.log(updatedMessage);
       setMatch(updatedMessage);
-      
+
     });
 
     return () => {
@@ -63,6 +93,23 @@ function ActiveMatchDetail() {
 
   return (
     <div className="flex w-full justify-center my-20">
+              {isReferee && (
+          <div
+           
+            className="absolute top-1/5 left-0 h-12 flex items-center
+             justify-between bg-red-500 p-2 text-xl
+             text-white rounded-tr-full rounded-br-full"
+          >
+            Delete match
+            <RiDeleteBin6Line
+             onClick={onDeleteMatch}
+              color="white"
+              className="mx-5 hover:scale-110 duration-200 cursor-pointer"
+              size={30}
+            />
+          </div>
+        )}
+
  <div className="flex">
       { match && (isSwapped ? (
         <>

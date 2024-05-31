@@ -50,7 +50,7 @@ function ActiveMatchDetail() {
   useEffect(() => {
     console.log("active");
     const socket = createWebSocket(
-      `ws://localhost:3000/live?token=${token}`,
+      `wss://volleyball-backend.onrender.com/live?token=${token}`,
       matchId,
       (message) => {
         let updatedMessage = { ...message };

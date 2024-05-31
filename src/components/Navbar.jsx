@@ -33,6 +33,7 @@ function NavBar() {
   const handleLogout = () =>{
     setToken(null)
     setUser(null)
+    window.location.reload();
   }
 
     return (

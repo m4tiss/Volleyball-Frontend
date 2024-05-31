@@ -8,6 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import EndSetButton from "../components/EndSetButton";
 import EndMatchButton from "../components/EndMatchButton";
 import MatchStatus from "../components/MatchStatus";
+import MatchAndSetTime from "../components/MatchAndSetTime";
 
 function ActiveMatchDetail() {
   const { token } = useAuth();
@@ -89,8 +90,10 @@ function ActiveMatchDetail() {
   };
 
   return (
-    <div className="flex flex-col w-full items-center my-20">
+    <div className="flex flex-col w-full items-center my-10">
       {match && <MatchStatus status={match.status}/>}
+      {match && <MatchAndSetTime status={match.status} times={match.times}/>}
+      
       {isReferee && (
         <div
           className="absolute top-1/5 left-0 h-12 flex items-center

@@ -11,7 +11,7 @@ function MatchStatus({status}) {
             : status === "PLANNED"
             ? "bg-pink-500 text-white"
             : "bg-lime-400 text-black"
-        }  p-3 mb-10 rounded-3xl shadow-xl`}
+        }  p-3 mb-10 rounded-3xl text-xl shadow-xl`}
       >
         {status}
       </div>

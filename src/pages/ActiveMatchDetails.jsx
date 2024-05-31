@@ -7,6 +7,7 @@ import ActiveTeamPanel from "../components/ActiveTeamPanel";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import EndSetButton from "../components/EndSetButton";
 import EndMatchButton from "../components/EndMatchButton";
+import MatchStatus from "../components/MatchStatus";
 
 function ActiveMatchDetail() {
   const { token } = useAuth();
@@ -89,6 +90,7 @@ function ActiveMatchDetail() {
 
   return (
     <div className="flex flex-col w-full items-center my-20">
+      {match && <MatchStatus status={match.status}/>}
       {isReferee && (
         <div
           className="absolute top-1/5 left-0 h-12 flex items-center

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 function MatchAndSetTime({ status, times }) {
   const [matchTime, setMatchTime] = useState(0);
   const [setTime, setSetTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
 
   const intervalIdRef = useRef(null);
@@ -20,6 +21,7 @@ function MatchAndSetTime({ status, times }) {
 
       setMatchTime(elapsedMatchTime);
       setSetTime(elapsedSetTime);
+      setCurrentTime(new Date());
     };
 
     updateTimes();
@@ -44,6 +46,9 @@ function MatchAndSetTime({ status, times }) {
 
   return (
     <div className="flex mb-10">
+        <div className="text-center bg-purple-500 min-w-52 text-xl text-white p-3 rounded-3xl mx-5">
+        Current time: {formatTime(currentTime.getHours() * 3600 + currentTime.getMinutes() * 60 + currentTime.getSeconds())}
+      </div>
       <div className="text-center bg-purple-500 min-w-52 text-xl text-white p-3 rounded-3xl mx-5">
         Match time: {formatTime(matchTime)}
       </div>

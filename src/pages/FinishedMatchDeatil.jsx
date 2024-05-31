@@ -6,6 +6,7 @@ import axios from "../config/axios";
 import { format } from "date-fns";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
+import SetTime from "../components/SetTime";
 
 function FinishedMatchDetail() {
   let { matchId } = useParams();
@@ -219,17 +220,13 @@ function FinishedMatchDetail() {
     toast.success("Match copied succesfully!");
   };
 
-
   const onDeleteMatch = async () => {
-
     try {
       await axios.delete(`/referee/matches/${matchId}`);
-      navigate('/content');
+      navigate("/content");
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
-    
-
   };
 
   return (
@@ -240,23 +237,21 @@ function FinishedMatchDetail() {
         <h2 className="text-4xl px-10">{match.name_b}</h2>
       </div>
       <div className="absolute top-1/3 left-0 mb-10 flex-col">
-        <div
-         
-          className="h-12 flex justify-between items-center bg-slate-400 p-2 text-xl text-white rounded-tr-full rounded-br-full"
-        >
-          Copy <FaRegCopy
-           onClick={handleCopyToClipboard}
-            color="white" className="mx-5 hover:scale-110 duration-200 cursor-pointer" size={30} />
+        <div className="h-12 flex justify-between items-center bg-slate-400 p-2 text-xl text-white rounded-tr-full rounded-br-full">
+          Copy{" "}
+          <FaRegCopy
+            onClick={handleCopyToClipboard}
+            color="white"
+            className="mx-5 hover:scale-110 duration-200 cursor-pointer"
+            size={30}
+          />
         </div>
 
         {isReferee && (
-          <div
-           
-            className="h-12 flex items-center justify-between bg-red-500 p-2 text-xl text-white rounded-tr-full rounded-br-full"
-          >
+          <div className="h-12 flex items-center justify-between bg-red-500 p-2 text-xl text-white rounded-tr-full rounded-br-full">
             Delete match
             <RiDeleteBin6Line
-             onClick={onDeleteMatch}
+              onClick={onDeleteMatch}
               color="white"
               className="mx-5 hover:scale-110 duration-200 cursor-pointer"
               size={30}
@@ -272,9 +267,13 @@ function FinishedMatchDetail() {
             key={index}
             className="h-60 w-3/4 border-2 border-purple-700 mb-4"
           >
-            <h2 className="text-3xl m-5">
-              Set {index + 1}: {set}
-            </h2>
+            <div className="flex items-center">
+              <h2 className="text-3xl m-5">
+                Set {index + 1}: {set}
+              </h2>
+              <SetTime index={index} times={match.times} />
+            </div>
+
             <div className="grid grid-cols-1 overflow-x-auto">
               {rowsForSet.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex w-10">

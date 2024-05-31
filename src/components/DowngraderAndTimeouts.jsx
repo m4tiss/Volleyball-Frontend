@@ -8,13 +8,11 @@ function DowngraderAndTimeouts(props) {
     const { matchId } = useParams();
     const [isReferee, setIsReferee] = useState(false);
     const { token } = useAuth();
-    const [timeouts, setTimeouts] = useState(props.timeouts);
   
   
   
     useEffect(() => {
       const fetchUserRole = async () => {
-        console.log(timeouts)
         try {
           const res = await axios.get(`/auth/user`);
           const user_data = res.data;
@@ -40,11 +38,15 @@ function DowngraderAndTimeouts(props) {
         }
       };
 
-    const onTimeout = () => {
-        if (timeouts > 0) {
-          setTimeouts(timeouts - 1);
-          console.log(timeouts - 1); 
-        }
+    const onTimeout = async () => {
+      try {
+        await axios.post(`/referee/live/timeout`, {
+          match_id: matchId,
+          team_id: props.teamId
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
       };
 
     return (
@@ -55,7 +57,7 @@ function DowngraderAndTimeouts(props) {
         className={`text-3xl bg-slate-100 p-2 rounded-lg ${!isReferee ? 'opacity-50' : ''}`}
         >-1</button>
         
-        {timeouts === 0 && (
+        {props.timeouts === 0 && (
             <>
               <button
                 key="0"
@@ -75,7 +77,7 @@ function DowngraderAndTimeouts(props) {
               </button>
             </>
           )}
-          {timeouts === 1 && (
+          {props.timeouts === 1 && (
             <>
               <button
                 disabled={!isReferee}
@@ -94,7 +96,7 @@ function DowngraderAndTimeouts(props) {
               </button>
             </>
           )}
-          {timeouts === 2 && (
+          {props.timeouts === 2 && (
             <>
               <button
                 key="0"

@@ -83,6 +83,7 @@ function ActiveMatchDetail() {
 
   const extractTimeouts = (set_details) => {
     const timeouts = set_details.split(":").map((num) => parseInt(num));
+    console.log("TIMEOUTS:"+timeouts)
     return timeouts;
   };
 

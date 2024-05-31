@@ -46,6 +46,10 @@ function NavBar() {
         {user && user.role === "referee" && <Link to="/addMatch" className="text-3xl mx-20 hover:text-yellow-400 border-none cursor-pointer">
             Add Match
         </Link>}
+
+        {user && user.role === "referee" && <Link to="/settings" className="text-3xl mx-20 hover:text-yellow-400 border-none cursor-pointer">
+            Settings
+        </Link>}
         
         </div>
 

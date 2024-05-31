@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from "./providers/AuthProvider";
 import MatchDetail from "./pages/MatchDetail";
 import TeamPage from "./pages/TeamPage";
 import AddMatch from "./pages/AddMatch";
+import Settings from "./pages/Settings";
 
 function App() {  
   return (
@@ -34,6 +35,10 @@ function App() {
               <Route
                 path="addMatch"
                 element={<PrivateRoute component={<AddMatch />} />}
+              />
+              <Route
+                path="settings"
+                element={<PrivateRoute component={<Settings />} />}
               />
               <Route path="matchDetail/:matchId"
                element={<PrivateRoute component={<MatchDetail />} />}

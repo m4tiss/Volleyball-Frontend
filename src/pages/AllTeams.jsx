@@ -1,5 +1,4 @@
 import {React,useState,useEffect} from 'react';
-import { Navigate } from "react-router-dom";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import axios from '../config/axios';
 import { useAuth } from '../providers/AuthProvider';

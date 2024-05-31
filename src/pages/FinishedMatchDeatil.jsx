@@ -278,7 +278,7 @@ function FinishedMatchDetail() {
             <div className="grid grid-cols-1 overflow-x-auto">
               {rowsForSet.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex w-10">
-                  <div className="p-2 min-w-20 text-center font-bold">
+                  <div className="p-2 min-w-40 text-center font-bold">
                     {row[0]}
                   </div>
                   {row.slice(1).map((item, colIndex) => (

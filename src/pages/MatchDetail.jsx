@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import FinishedMacthDetail from "./FinishedMatchDeatil";
+import FinishedMatchDetail from "./FinishedMatchDeatil";
 import ActiveMatchDetail from "./ActiveMatchDetails"
 import axios from "../config/axios";
  import { useAuth } from "../providers/AuthProvider";
@@ -36,9 +36,10 @@ function MatchDetail() {
   const { status } = match;
 
   if (status === "FINISHED") {
-    return <FinishedMacthDetail/>
+    return <FinishedMatchDetail/>
   } else if(status === "IN_PROGRESS" || status === "PLANNED") {
     return <ActiveMatchDetail/>
+
   }
   else{
     return <div>Loading</div>

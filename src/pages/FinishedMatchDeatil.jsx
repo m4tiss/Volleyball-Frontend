@@ -219,7 +219,7 @@ function FinishedMatchDetail() {
     toast.success("Match copied succesfully!");
   };
 
-  //not testing
+
   const onDeleteMatch = async () => {
 
     try {

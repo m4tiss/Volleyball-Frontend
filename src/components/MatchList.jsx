@@ -6,7 +6,7 @@ function MatchList() {
   const { allMatches } = useMatches();
 
   return (
-    <div className="flex flex-col basis-3/4 items-center gap-10">
+    <div className="flex flex-col basis-3/4 items-center gap-10 mb-20">
       <h2 className="text-3xl pt-8">Match list</h2>
       {allMatches.map((match) => (
         <MatchPanel key={match.id} match={match} />

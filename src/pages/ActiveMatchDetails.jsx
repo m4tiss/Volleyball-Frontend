@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "../config/axios";
+import { FaVolleyball } from "react-icons/fa6";
 import { createWebSocket } from "../WebSocket";
 import { useAuth } from "../providers/AuthProvider";
 import ActiveTeamPanel from "../components/ActiveTeamPanel";
@@ -33,7 +34,6 @@ function ActiveMatchDetail() {
     fetchUserRole();
   }, [token]);
 
-  //not testing
   const onDeleteMatch = async () => {
     try {
       await axios.delete(`/referee/matches/${matchId}`);
@@ -62,8 +62,6 @@ function ActiveMatchDetail() {
         if (updatedMessage.result_detailed.timeout.length === 0) {
           updatedMessage.result_detailed.timeout = ["0:0"];
         }
-
-        console.log(updatedMessage);
         setMatch(updatedMessage);
       }
     );
@@ -85,15 +83,14 @@ function ActiveMatchDetail() {
 
   const extractTimeouts = (set_details) => {
     const timeouts = set_details.split(":").map((num) => parseInt(num));
-    console.log("TIMEOUTS:"+timeouts)
     return timeouts;
   };
 
   return (
     <div className="flex flex-col w-full items-center my-10">
-      {match && <MatchStatus status={match.status}/>}
-      {match && <MatchAndSetTime status={match.status} times={match.times}/>}
-      
+      {match && <MatchStatus status={match.status} />}
+      {match && <MatchAndSetTime status={match.status} times={match.times} />}
+
       {isReferee && (
         <div
           className="absolute top-1/5 left-0 h-12 flex items-center
@@ -109,6 +106,21 @@ function ActiveMatchDetail() {
           />
         </div>
       )}
+
+      <div
+        className="absolute top-1/5 right-0 h-12 flex items-center
+                  justify-between bg-purple-500 p-2 text-xl
+                  text-white rounded-tl-full rounded-bl-full"
+      >
+        Show match details
+        <Link to={`/matchDetail/live/${matchId}`}>
+          <FaVolleyball
+            color="white"
+            className="mx-5 hover:scale-110 duration-200 cursor-pointer"
+            size={30}
+          />
+        </Link>
+      </div>
 
       <div className="flex">
         {match &&
@@ -212,8 +224,12 @@ function ActiveMatchDetail() {
             </>
           ))}
       </div>
-      {isReferee && match && match.setEnded && (<EndSetButton matchId={matchId}/>)}
-      {isReferee && match && match.matchEnded && (<EndMatchButton matchId={matchId}/>)}
+      {isReferee && match && match.setEnded && (
+        <EndSetButton matchId={matchId} />
+      )}
+      {isReferee && match && match.matchEnded && (
+        <EndMatchButton matchId={matchId} />
+      )}
     </div>
   );
 }

@@ -10,6 +10,7 @@ import MatchDetail from "./pages/MatchDetail";
 import TeamPage from "./pages/TeamPage";
 import AddMatch from "./pages/AddMatch";
 import Settings from "./pages/Settings";
+import FinishedMatchDetail from "./pages/FinishedMatchDeatil";
 
 function App() {  
   return (
@@ -43,6 +44,11 @@ function App() {
               <Route path="matchDetail/:matchId"
                element={<PrivateRoute component={<MatchDetail />} />}
                />
+
+              <Route path="matchDetail/live/:matchId"
+               element={<PrivateRoute component={<FinishedMatchDetail />} />}
+               />
+
             </Routes>
           </div>
         </BrowserRouter>

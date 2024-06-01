@@ -1,21 +1,19 @@
-import { React, useState,useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { CiEdit } from "react-icons/ci";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import EditTeam from "../components/EditTeam";
-import axios from '../config/axios'
+import axios from "../config/axios";
 
 function TeamPage({ team, setCounter, closeTeamClick }) {
-
   const [edit, setEdit] = useState(false);
 
-
   const handleEdit = () => {
-    setEdit(!edit); 
+    setEdit(!edit);
   };
 
-   const [players, setPlayers] = useState(team.players.players);
+  const [players, setPlayers] = useState(team.players.players);
 
-   useEffect(() => {
+  useEffect(() => {
     setPlayers(team.players.players);
   }, [team]);
 
@@ -27,10 +25,10 @@ function TeamPage({ team, setCounter, closeTeamClick }) {
     try {
       await axios.delete(`/referee/teams/${team.id}`);
     } catch (error) {
-      console.error('Error posting data:', error);
+      console.error("Error posting data:", error);
     }
-    setCounter(prev=> prev + 1)
-    closeTeamClick()
+    setCounter((prev) => prev + 1);
+    closeTeamClick();
   };
 
   return (
@@ -42,20 +40,27 @@ function TeamPage({ team, setCounter, closeTeamClick }) {
         </h2>
       ))}
       <div className="flex my-10">
-        <CiEdit 
-        className="mx-10 cursor-pointer" 
-        size={60} 
-        color="green"
-        onClick={()=>handleEdit()} />
-        <RiDeleteBin6Line 
-        className="mx-10 cursor-pointer" 
-        size={55} 
-        color="red"
-        onClick={()=>handleDelete()}
+        <CiEdit
+          className="mx-10 cursor-pointer"
+          size={60}
+          color="green"
+          onClick={() => handleEdit()}
+        />
+        <RiDeleteBin6Line
+          className="mx-10 cursor-pointer"
+          size={55}
+          color="red"
+          onClick={() => handleDelete()}
         />
       </div>
       <div>
-        {edit && <EditTeam team={team} setCounter={setCounter} updatePlayers={updatePlayers}/>}
+        {edit && (
+          <EditTeam
+            team={team}
+            setCounter={setCounter}
+            updatePlayers={updatePlayers}
+          />
+        )}
       </div>
     </div>
   );

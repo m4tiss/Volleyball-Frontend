@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "../config/axios";
 import { FaVolleyball } from "react-icons/fa6";
@@ -25,7 +25,6 @@ function ActiveMatchDetail() {
         const res = await axios.get(`/auth/user`);
         const user_data = res.data;
         if (user_data.role === "referee") setIsReferee(true);
-        console.log(isReferee);
       } catch (error) {
         setIsReferee(false);
         console.error("Error fetching data:", error);
@@ -48,7 +47,6 @@ function ActiveMatchDetail() {
   };
 
   useEffect(() => {
-    console.log("active");
     const socket = createWebSocket(
       `wss://volleyball-backend.onrender.com/live?token=${token}`,
       matchId,

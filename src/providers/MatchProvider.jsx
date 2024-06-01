@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import  { React, createContext, useState, useContext, useEffect } from 'react';
 import axios from '../config/axios';
 import { useAuth } from './AuthProvider'
 
@@ -16,9 +16,7 @@ export const MatchProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("match")
         const res = await axios.get(`/observator/matches/all${status === 'ALL' ? '' : `/` + status}`);
-
         const allmatches = res.data;
         allmatches.sort((a, b) => new Date(b.match_date) - new Date(a.match_date));
         setAllMatches(allmatches);

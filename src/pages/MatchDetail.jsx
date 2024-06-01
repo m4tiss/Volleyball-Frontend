@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FinishedMatchDetail from "./FinishedMatchDeatil";
-import ActiveMatchDetail from "./ActiveMatchDetails"
+import ActiveMatchDetail from "./ActiveMatchDetails";
 import axios from "../config/axios";
- import { useAuth } from "../providers/AuthProvider";
+import { useAuth } from "../providers/AuthProvider";
 
 function MatchDetail() {
   let { matchId } = useParams();
-
-
-   const { finishHeader } = useAuth()
+  const { finishHeader } = useAuth();
   const [match, setMatch] = useState({});
 
   useEffect(() => {
@@ -27,25 +25,20 @@ function MatchDetail() {
     };
 
     fetchMatch();
-    
+
     return () => {
       abortController.abort();
     };
-
-  }, [matchId,finishHeader]);
+  }, [matchId, finishHeader]);
   const { status } = match;
 
   if (status === "FINISHED") {
-    return <FinishedMatchDetail/>
-  } else if(status === "IN_PROGRESS" || status === "PLANNED") {
-    return <ActiveMatchDetail/>
-
+    return <FinishedMatchDetail />;
+  } else if (status === "IN_PROGRESS" || status === "PLANNED") {
+    return <ActiveMatchDetail />;
+  } else {
+    return <div>Loading</div>;
   }
-  else{
-    return <div>Loading</div>
-   
-  }
-
 }
 
 export default MatchDetail;

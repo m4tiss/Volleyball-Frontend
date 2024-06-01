@@ -10,10 +10,8 @@ import SetTime from "../components/SetTime";
 
 function FinishedMatchDetail() {
   let { matchId } = useParams();
-
   const [match, setMatch] = useState({});
   const [rows, setRows] = useState([[], []]);
-
   const [isReferee, setIsReferee] = useState(false);
   const { token } = useAuth();
   const navigate = useNavigate();
@@ -24,7 +22,6 @@ function FinishedMatchDetail() {
         const res = await axios.get(`/auth/user`);
         const user_data = res.data;
         if (user_data.role === "referee") setIsReferee(true);
-        console.log(isReferee);
       } catch (error) {
         setIsReferee(false);
         console.error("Error fetching data:", error);
@@ -39,7 +36,6 @@ function FinishedMatchDetail() {
         const res = await axios.get(`/observator/matches/${matchId}`);
         const match = res.data;
         setMatch(match);
-        console.log(match);
         setRows([[match.name_a], [match.name_b]]);
       } catch (error) {
         console.error("Error fetching data:", error);

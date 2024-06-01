@@ -26,7 +26,7 @@ function Login() {
       const newToken = response.data.token;
       setToken(newToken);
       setError("");
-      window.location.reload();
+      //window.location.reload();
     } catch (error) {
       setError("Incorrect username or password!");
     }

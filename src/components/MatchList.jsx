@@ -1,15 +1,18 @@
 import React, { useState ,useEffect } from "react";
 import MatchPanel from "./MatchPanel";
 import { useMatches } from "../providers/MatchProvider";
+import { useAuth } from "../providers/AuthProvider";
 import axios from "../config/axios";
 
 function MatchList() {
 
   const[allMatches,setAllMatches] = useState([]);
   const { status } = useMatches();
+  const { finishHeader } = useAuth();
 
     useEffect(() => {
     const fetchData = async () => {
+      if(finishHeader){
       try {
         const res = await axios.get(`/observator/matches/all${status === 'ALL' ? '' : `/` + status}`);
         const allMatchesData = res.data;
@@ -20,8 +23,9 @@ function MatchList() {
         console.error('Error fetching data:', error);
       }
     };
+  }
     fetchData();
-  }, [status]);
+  }, [status,finishHeader]);
 
 
   return (

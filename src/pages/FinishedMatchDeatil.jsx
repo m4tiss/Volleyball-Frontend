@@ -13,11 +13,12 @@ function FinishedMatchDetail() {
   const [match, setMatch] = useState({});
   const [rows, setRows] = useState([[], []]);
   const [isReferee, setIsReferee] = useState(false);
-  const { token } = useAuth();
+  const { token, finishHeader } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserRole = async () => {
+      if (finishHeader) {
       try {
         const res = await axios.get(`/auth/user`);
         const user_data = res.data;
@@ -26,12 +27,14 @@ function FinishedMatchDetail() {
         setIsReferee(false);
         console.error("Error fetching data:", error);
       }
+    }
     };
     fetchUserRole();
-  }, [token]);
+  }, [token,finishHeader]);
 
   useEffect(() => {
     const fetchMatch = async () => {
+      if (finishHeader) {
       try {
         const res = await axios.get(`/observator/matches/${matchId}`);
         const match = res.data;
@@ -41,8 +44,9 @@ function FinishedMatchDetail() {
         console.error("Error fetching data:", error);
       }
     };
+  }
     fetchMatch();
-  }, [matchId]);
+  }, [matchId,finishHeader]);
 
   const sets = match.result_detailed?.resD || [];
 

@@ -223,7 +223,7 @@ function ActiveMatchDetail() {
           ))}
       </div>
       {isReferee && match && match.setEnded && (
-        <EndSetButton matchId={matchId} />
+        <EndSetButton setIsSwapped={setIsSwapped} matchId={matchId} />
       )}
       {isReferee && match && match.matchEnded && (
         <EndMatchButton matchId={matchId} />

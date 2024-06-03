@@ -1,7 +1,7 @@
 import { React } from "react";
 import axios from "../config/axios";
 
-function EndSetButton({ matchId }) {
+function EndSetButton({ setIsSwapped,matchId }) {
   const onEndButton = async () => {
     try {
       await axios.post(`/referee/live/endset`, {
@@ -10,6 +10,7 @@ function EndSetButton({ matchId }) {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+    setIsSwapped(prev=>!prev)
   };
 
   return (
